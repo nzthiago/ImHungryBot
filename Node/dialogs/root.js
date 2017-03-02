@@ -1,9 +1,9 @@
 var builder = require('botbuilder');
 
 var DialogLabels = {
-    BestRated: 'Find Best Rated Restaurants Nearby',
-    FindByType: 'Browse Nearby Restaurants by Type',
-    FindRestaurant: 'Find Info about a Specific Restaurant Nearby'
+    BestRated: 'Best Nearby',
+    FindByType: 'Nearby by Type',
+    FindRestaurant: 'Find Specific Restaurant'
 };
 
 module.exports = [

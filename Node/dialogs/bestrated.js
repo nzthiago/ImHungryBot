@@ -13,16 +13,19 @@ module.exports = [
             .then(places => {
                 var cards = [];
                 places.forEach(place => {
+                    var display_address = place.location.display_address.join(','); //combine address lines
+                    var maps_url = 'http://maps.google.com/?daddr=' + display_address.split(' ').join('+');
                     cards.push(
                         new builder.HeroCard(session)
                         .title(place.name)
-                        .subtitle(place.display_address + '\r\n' + place.display_phone)
-                        .text('Rating: ' + place.rating + '. Categories: ' + place.categories.alias)
+                        .subtitle(display_address + '\r\n' + place.display_phone)
+                        .text('Rating: ' + place.rating + '. Reviews: ' + place.review_count)
                         .images([
                             builder.CardImage.create(session, place.image_url)
                         ])
                         .buttons([
-                            builder.CardAction.openUrl(session, place.url, 'Learn More')
+                            builder.CardAction.openUrl(session, place.url, 'Learn More'),
+                            builder.CardAction.openUrl(session, maps_url, 'Directions')
                         ])
                     )
                 });

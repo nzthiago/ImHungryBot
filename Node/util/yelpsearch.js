@@ -9,7 +9,7 @@ module.exports = {
             var searchRequest = {
                 latitude: lat,
                 longitude: long,
-                radius: 16093, //10 miles
+                radius: 8046, //5 miles
                 sort_by: "rating",
                 open_now: true,
                 limit:10,
