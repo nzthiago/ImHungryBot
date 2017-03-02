@@ -1,0 +1,31 @@
+{
+  "name": "imhungrybot",
+  "version": "1.0.0",
+  "description": "I'm Hungry Bot",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Microsoft Corp.",
+  "license": "MIT",
+  "keywords": [
+    "botbuilder",
+    "bots",
+    "chatbots",
+    "hungry",
+    "i'm hungry"
+  ],
+  "bugs": {
+    "url": "https://github.com/nzthiago/ImHungryBot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nzthiago/ImHungryBot.git"
+  },
+  "dependencies": {
+    "botbuilder": "^3.7.0",
+    "botbuilder-location": "^1.0.4",
+    "restify": "^4.3.0",
+    "dotenv-extended": "^1.0.4",
+    "yelp-fusion": "^1.0.3"
+  }
+}
