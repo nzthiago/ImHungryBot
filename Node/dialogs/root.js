@@ -3,7 +3,7 @@ var builder = require('botbuilder');
 var DialogLabels = {
     BestRated: 'Best Nearby',
     FindByType: 'Nearby by Type',
-    FindRestaurant: 'Find Specific Restaurant'
+    FindRestaurant: 'Find a Restaurant by Name'
 };
 
 module.exports = [
@@ -17,7 +17,7 @@ module.exports = [
         // prompt for search option
         builder.Prompts.choice(
             session,
-            welcomeMessage + 'I can help you find some open places nearby. How do you want to do it? Click a button or just chat with me.',
+            welcomeMessage + 'I can help you find some open places nearby. How do you want to do it? Click a button or just chat with me:',
             [DialogLabels.BestRated, DialogLabels.FindByType, DialogLabels.FindRestaurant],
             {
                 maxRetries: 3,
