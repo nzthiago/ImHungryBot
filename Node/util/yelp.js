@@ -10,7 +10,6 @@ module.exports = {
             var searchRequest = {
                 latitude: lat,
                 longitude: long,
-                //radius: 8046, //5 miles
                 open_now: true,
                 limit:10,
                 categories:'food'
@@ -34,7 +33,7 @@ module.exports = {
                 new builder.HeroCard(session)
                 .title(place.name)
                 .subtitle(display_address + '\r\n' + place.display_phone)
-                .text('Rating: ' + place.rating + '. Reviews: ' + place.review_count)
+                .text('Rating: ' + place.rating + '. Reviews: ' + place.review_count + '. Price: ' + place.price)
                 .images([
                     builder.CardImage.create(session, place.image_url)
                 ])

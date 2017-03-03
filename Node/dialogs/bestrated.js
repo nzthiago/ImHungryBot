@@ -8,7 +8,7 @@ module.exports = [
     function (session, results) {
         if (results)
         {
-            session.send("Thanks, got it! Here's 10 recommendations from Yelp close to you that are open now:");
+            session.send("Thanks, got it! Here's the top recommendations from Yelp close to you that are open now:");
             yelputil.getYelpRecommendations(null, results.response.geo.latitude, results.response.geo.longitude)
             .then(places => {
                 var cards = yelputil.getCardsFromPlaces(session, places);
