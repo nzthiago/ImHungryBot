@@ -3,32 +3,45 @@ var yelputil = require('../util/yelp');
 var util = require('../util/util');
 
 module.exports = [
-    function (session) {
-        var greeting = util.timeBasedGreeting();
-        session.send(greeting.message);
-        // prompt for search option
-        builder.Prompts.choice(
-            session,
-            'So, what kind of place are you looking for? Here\'s some popular ones, otherwise just type something:',
-            greeting.categories,
-            {
-                maxRetries: 0
-            });
+    function (session, args, next) {
+        //check if asked for location more than 5 minutes ago
+        if (!session.userData.lastAskedForLocation 
+           || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
+                 session.beginDialog("location");
+        } else {
+             next();
+        }
     },
-    function (session, results){
-        if (results.response && results.response.entity) {
+    function (session){
+        if (session.userData.lat & session.userData.long) {
+            session.dialogData.greeting = util.timeBasedGreeting(session.userData.lat, session.userData.long);
+            // prompt for search option
+            builder.Prompts.choice(
+                session,
+                'So, what kind of place are you looking for? Just write me your preference, or choose from one of these popular ones:',
+                session.dialogData.greeting.categories,
+                {
+                    maxRetries: 0
+                });
+        }
+        else
+        {
+            session.send('Couldn\'t get your location... Better luck next time!');
+            session.replaceDialog('/');
+        }
+    },
+    function (session, results) {
+        if (results && results.response && results.response.entity) {
             session.dialogData.answer = results.response.entity;
-        } else if (session.message.text)
+        } 
+        else if (session.message.text)
         {
             session.dialogData.answer = session.message.text;
         }
-        session.beginDialog("location");
-    },
-    function (session, results) {
-        if (results)
+        if (session.dialogData.answer)
         {
-            session.send('Thanks, got it! Here\'s top recommendations from Yelp close to you that are open now that have \'' + session.dialogData.answer + '\' in the categories or comments:');
-            yelputil.getYelpRecommendations(session.dialogData.answer, results.response.geo.latitude, results.response.geo.longitude)
+            session.send('Got it! ' + session.dialogData.greeting.message + ' Here\'s top recommendations from Yelp close to you that are open now that have \'' + session.dialogData.answer + '\' in the categories or comments:');
+            yelputil.getYelpRecommendations(session.dialogData.answer, session.userData.lat, session.userData.long)
             .then(places => {
                 var cards = yelputil.getCardsFromPlaces(session, places);
                 var reply = new builder.Message(session)
@@ -40,7 +53,7 @@ module.exports = [
         }
         else
         {
-            session.send('Couldn\'t get your location... Better luck next time!');
+            session.send('Couldn\'t understand your answer... Better luck next time!');
             session.replaceDialog('/');
         }
     }

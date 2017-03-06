@@ -8,16 +8,16 @@ var DialogLabels = {
 
 module.exports = [
     function (session) {
-        var welcomeMessage = "Welcome back! Hungry again huh? ";
+        var welcomeMessage = "Let's find you a place to eat.";
         // has the user been welcomed to the conversation?
         if (!session.privateConversationData[global.UserWelcomedKey]) {
             session.privateConversationData[global.UserWelcomedKey] = true;
-            var welcomeMessage = "Hi, I\'m Hungry! Hope you are too. ";
+            var welcomeMessage = "Hi, I\'m Hungry! Hope you are too. I can help you find some open places nearby.";
         }
         // prompt for search option
         builder.Prompts.choice(
             session,
-            welcomeMessage + 'I can help you find some open places nearby. How do you want to do it? Click a button or just chat with me:',
+            welcomeMessage + ' How do you want to do it? Click a button or just chat with me:',
             [DialogLabels.BestRated, DialogLabels.FindByType, DialogLabels.FindRestaurant],
             {
                 maxRetries: 3,

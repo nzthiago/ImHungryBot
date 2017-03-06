@@ -1,13 +1,18 @@
+var tzwhere = require('tzwhere');
+var moment = require('moment');
+
+tzwhere.init();
+
 module.exports = {
-    timeBasedGreeting: function() {
+    timeBasedGreeting: function(lat, lon) {
         var message = '';
         var categories = [];
-        var hour = new Date().getHours();
+        var hour = timeAtLocation(lat, lon);
         if (hour < 6){
             message = 'Late night or super early hunger?';
             categories = ['Diner', 'Pub', 'Hotel Bar', '24/7'];
         } else if (hour < 9) {
-            message = 'Is it breakfast time?';
+            message = 'Breakfast time maybe?';
             categories = ['Diner', 'Breakfast', 'Café'];
         } else if (hour < 11) {
             message = 'Looking for a snack or brunch maybe?';
@@ -24,4 +29,8 @@ module.exports = {
         }
         return {message, categories};
     }
+}
+
+function timeAtLocation(lat, long) {
+        return moment.utc().add(tzwhere.tzOffsetAt(lat, long), 'ms').hour();
 }

@@ -2,14 +2,19 @@ var builder = require('botbuilder');
 var yelputil = require('../util/yelp');
 
 module.exports = [
-    function (session) {
-        session.beginDialog("location");
+    function (session, args, next) {
+        if (!session.userData.lastAskedForLocation 
+           || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
+                 session.beginDialog("location");
+        } else {
+             next();
+        }
     },
-    function (session, results) {
-        if (results)
+    function (session) {
+        if (session.userData.lat & session.userData.long)
         {
             session.send("Thanks, got it! Here's the top recommendations from Yelp close to you that are open now:");
-            yelputil.getYelpRecommendations(null, results.response.geo.latitude, results.response.geo.longitude)
+            yelputil.getYelpRecommendations(null, session.userData.lat, session.userData.long)
             .then(places => {
                 var cards = yelputil.getCardsFromPlaces(session, places);
                 var reply = new builder.Message(session)

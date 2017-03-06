@@ -29,9 +29,6 @@ bot.dialog('reset', require('./dialogs/reset'))
     .triggerAction({ 
         matches: [/reset/i, /cancel/i, /return/i, /start again/i, /nevermind/i]
     });
-var locationDialog = require('botbuilder-location');
-bot.library(locationDialog.createLibrary(process.env.BING_MAPS_API_KEY));
-exports.locationDialog = locationDialog;
 
 // log any bot errors into the console
 bot.on('error', function (e) {
