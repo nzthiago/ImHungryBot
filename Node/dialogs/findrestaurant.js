@@ -12,7 +12,7 @@ module.exports = [
         //}
     },
     function (session, results) {
-                if (session.userData.lat & session.userData.long)
+                if (session.userData && (session.userData.lat & session.userData.long))
         {
             session.send('Hello from lat %s long %s', session.userData.lat, session.userData.long);
             session.replaceDialog('/');

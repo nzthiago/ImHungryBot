@@ -1,9 +1,10 @@
 module.exports = 
      function (session) {
         // reset data
-         if (session.privateConversationData[global.UserWelcomedKey]) {
-            delete session.privateConversationData[global.UserWelcomedKey];
-        }
+        session.conversationData = {}; 
+        session.dialogData = {};
+        session.privateConversationData = {};
+        session.userData = {};
         session.send('Alright! Let\'s try it again.');
         session.replaceDialog('/');
     };
