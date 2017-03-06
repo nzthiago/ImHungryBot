@@ -3,13 +3,13 @@ var location = require('./location');
 
 module.exports = [
     function (session, args, next) {
-        //check if asked for location more than 5 minutes ago
-        //if (!session.userData.lastAskedForLocation 
-        //   || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
+        //Only ask again if it's been more than 5 mins
+        if (!session.userData.lastAskedForLocation 
+          || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
         location.beginDialog(session);
-        //} else {
-        //     next();
-        //}
+        } else {
+            next();
+        }
     },
     function (session, results) {
                 if (session.userData && (session.userData.lat & session.userData.long))

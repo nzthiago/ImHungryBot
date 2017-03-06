@@ -7,6 +7,7 @@ exports.beginDialog = function(session, options) {
 exports.create = function (bot) {
     var prompt = new builder.IntentDialog()
         .onBegin(function (session, args) {
+            session.userData.lastAskedForLocation = new Date();
             if (session.message && session.message.address.channelId === 'facebook') {
                 var replyMessage = new builder.Message(session).text('Alright let\'s find some food for you! Please send me your current location so I can search closeby.');
                 replyMessage.sourceEvent({
@@ -23,7 +24,6 @@ exports.create = function (bot) {
                 session.send('Simulating your location!');
                 session.userData.lat = 47.6393261;
                 session.userData.long = -122.130572;
-                session.userData.lastAskedForLocation = new Date();
                 session.endDialog();
             }
         })
