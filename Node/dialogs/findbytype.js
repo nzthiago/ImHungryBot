@@ -9,7 +9,7 @@ module.exports = [
                  session.beginDialog("location");
         //} else {
         //     next();
-        }
+        //}
     },
     function (session){
         if (session.userData.lat & session.userData.long) {
