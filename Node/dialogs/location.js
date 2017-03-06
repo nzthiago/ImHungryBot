@@ -1,6 +1,6 @@
 var builder = require('botbuilder');
 module.exports = [
-    function (session) {
+    function (session, args, next) {
         if (session.message.address.channelId === 'facebook') {
             var replyMessage = new builder.Message(session).text('Alright let\'s find some food for you! Please send me your current location so I can search closeby.');
             replyMessage.sourceEvent({
@@ -10,7 +10,8 @@ module.exports = [
                     }]
                 }
             });
-            return session.send(replyMessage);
+            session.send(replyMessage);
+            next();
         } else {
             //Simulate a location for emulator and other channels for now. 
             //TODO: Investigate contributing to 'botbuilder-location' npm package for easy sharing of current location
@@ -22,6 +23,7 @@ module.exports = [
         }
     },
     function (session, results) {
+        console.log(session.message);
         if (results && results.response) {
             console.log(results);
             console.log(results.response);
