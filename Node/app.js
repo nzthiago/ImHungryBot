@@ -1,6 +1,6 @@
 // This loads the environment variables from the .env file
 require('dotenv-extended').load();
-
+var location = require('./dialogs/location')
 var builder = require('botbuilder');
 var restify = require('restify');
 global.UserWelcomedKey = 'UserWelcomed';
@@ -24,7 +24,7 @@ bot.dialog('/', require('./dialogs/root'));
 bot.dialog('bestrated', require('./dialogs/bestrated'));
 bot.dialog('findbytype', require('./dialogs/findbytype'));
 bot.dialog('findrestaurant', require('./dialogs/findrestaurant'));
-bot.dialog('location', require('./dialogs/location'));
+location.create(bot);
 bot.dialog('reset', require('./dialogs/reset'))
     .triggerAction({ 
         matches: [/reset/i, /cancel/i, /return/i, /start again/i, /nevermind/i]

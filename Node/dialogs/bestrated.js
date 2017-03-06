@@ -1,11 +1,12 @@
 var builder = require('botbuilder');
 var yelputil = require('../util/yelp');
+var location = require('./location');
 
 module.exports = [
     function (session, args, next) {
         //if (!session.userData.lastAskedForLocation 
           // || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
-                 session.beginDialog("location");
+        location.beginDialog(session);
         //} else {
         //     next();
         //}
