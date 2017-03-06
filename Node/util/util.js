@@ -32,5 +32,6 @@ module.exports = {
 }
 
 function timeAtLocation(lat, long) {
-        return moment.utc().add(tzwhere.tzOffsetAt(lat, long), 'ms').hour();
+        //return moment.utc().add(tzwhere.tzOffsetAt(lat, long), 'ms').hour();
+        return moment.hour();
 }

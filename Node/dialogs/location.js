@@ -23,6 +23,8 @@ module.exports = [
     },
     function (session, results) {
         if (results && results.response) {
+            console.log(results);
+            console.log(results.response);
             if (session.message.address.channelId === 'facebook') {
                 session.userData.lat = results.response.coordinates.lat;
                 session.userData.long = results.response.coordinates.long;
