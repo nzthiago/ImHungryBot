@@ -31,7 +31,7 @@ module.exports = [
         }
     },
     function (session, results) {
-        if (results && results.response && results.response.entity) {
+        if (results.response.entity) {
             session.dialogData.answer = results.response.entity;
         } 
         else if (session.message.text)
