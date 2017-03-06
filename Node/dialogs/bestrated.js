@@ -12,7 +12,7 @@ module.exports = [
         //}
     },
     function (session) {
-        if (session.userData && (session.userData.lat & session.userData.long)
+        if (session.userData && (session.userData.lat & session.userData.long))
         {
             session.send("Thanks, got it! Here's the top recommendations from Yelp close to you that are open now:");
             yelputil.getYelpRecommendations(null, session.userData.lat, session.userData.long)
