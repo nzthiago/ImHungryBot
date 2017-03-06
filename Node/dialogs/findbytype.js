@@ -1,6 +1,5 @@
 var builder = require('botbuilder');
 var yelputil = require('../util/yelp');
-var util = require('../util/util');
 
 module.exports = [
     function (session, args, next) {
@@ -14,12 +13,11 @@ module.exports = [
     },
     function (session){
         if (session.userData.lat & session.userData.long) {
-            session.dialogData.greeting = util.timeBasedGreeting(session.userData.lat, session.userData.long);
             // prompt for search option
             builder.Prompts.choice(
                 session,
                 'So, what kind of place are you looking for? Just write me your preference, or choose from one of these popular ones:',
-                session.dialogData.greeting.categories,
+                ['Diner', 'Pub', 'Hotel Bar', 'Breakfast', 'Café', 'Brunch', 'Italian', 'Chinese', 'Japanese'],
                 {
                     maxRetries: 0
                 });
@@ -40,7 +38,7 @@ module.exports = [
         }
         if (session.dialogData.answer)
         {
-            session.send('Got it! ' + session.dialogData.greeting.message + ' Here\'s top recommendations from Yelp close to you that are open now that have \'' + session.dialogData.answer + '\' in the categories or comments:');
+            session.send('Got it! Here\'s top recommendations from Yelp close to you that are open now that have \'' + session.dialogData.answer + '\' in the categories or comments:');
             yelputil.getYelpRecommendations(session.dialogData.answer, session.userData.lat, session.userData.long)
             .then(places => {
                 var cards = yelputil.getCardsFromPlaces(session, places);

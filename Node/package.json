@@ -25,7 +25,6 @@
     "botbuilder": "^3.7.0",
     "restify": "^4.3.0",
     "dotenv-extended": "^1.0.4",
-    "yelp-fusion": "^1.0.3",
-    "moment": "^2.17.1"
+    "yelp-fusion": "^1.0.3"
   }
 }
