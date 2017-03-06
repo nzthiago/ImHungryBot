@@ -29,7 +29,12 @@ exports.create = function (bot) {
         })
         .onDefault(function (session) {
             // Validate users reply.
-            console.log(session.message);
+            for (var i = 0; i < entities.length; i++) {
+                if (entities[i].type == "Place" && entities[i].geo && entities[i].geo.latitude && entities[i].geo.longitude) {
+                    session.userData.lat = entities[i].geo.latitude;
+                    session.userData.long = entities[i].geo.longitude;
+                }
+            }
             session.endDialog();
         });
     bot.dialog('location', prompt);
