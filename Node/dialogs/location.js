@@ -10,8 +10,7 @@ module.exports = [
                     }]
                 }
             });
-            session.send(replyMessage);
-            next();
+            builder.Prompts.text(replyMessage);
         } else {
             //Simulate a location for emulator and other channels for now. 
             //TODO: Investigate contributing to 'botbuilder-location' npm package for easy sharing of current location

@@ -3,12 +3,12 @@ var yelputil = require('../util/yelp');
 
 module.exports = [
     function (session, args, next) {
-        if (!session.userData.lastAskedForLocation 
-           || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
+        //if (!session.userData.lastAskedForLocation 
+          // || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
                  session.beginDialog("location");
-        } else {
-             next();
-        }
+        //} else {
+        //     next();
+        //}
     },
     function (session) {
         if (session.userData.lat & session.userData.long)
