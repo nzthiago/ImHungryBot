@@ -9,13 +9,13 @@ module.exports = [
            || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
             location.beginDialog(session);
         } else {
-             next();
+            next();
         }
     },
     function (session) {
         if (session.userData && (session.userData.lat & session.userData.long))
         {
-            session.send("Thanks, got it! Here's the top recommendations from Yelp close to you that are open now:");
+            session.send("Got it! Getting the top recommendations from Yelp close to you that are open now...");
             yelputil.getYelpRecommendations(null, session.userData.lat, session.userData.long)
             .then(places => {
                 var cards = yelputil.getCardsFromPlaces(session, places);

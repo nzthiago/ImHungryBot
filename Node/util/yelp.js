@@ -4,7 +4,7 @@ const clientId = process.env.YELP_APP_ID;
 const clientSecret = process.env.YELP_APP_TOKEN;
 
 module.exports = {
-    getYelpRecommendations: function(term, lat, long) {
+    getYelpRecommendations: function(term, lat, long, radius) {
         return yelp.accessToken(clientId, clientSecret).then(response => {
             var client = yelp.client(response.jsonBody.access_token);
             var searchRequest = {
@@ -12,12 +12,16 @@ module.exports = {
                 longitude: long,
                 open_now: true,
                 limit:10,
-                categories:'food'
+                categories:'restaurants,food,bars,beergardens,pianobars'
             };
             if (term) 
             {
                 searchRequest.term = term;
-            }
+            };
+            if (radius)
+            {
+                radius: radius;
+            };
             return client.search(searchRequest).then(response => {
                 var businesses = response.jsonBody.businesses;
                 return businesses;
@@ -32,7 +36,7 @@ module.exports = {
             cards.push(
                 new builder.HeroCard(session)
                 .title(place.name)
-                .subtitle(display_address + '\r\n' + place.display_phone)
+                .subtitle(display_address)
                 .text('Rating: ' + place.rating + '. Reviews: ' + place.review_count + '. Price: ' + place.price)
                 .images([
                     builder.CardImage.create(session, place.image_url)

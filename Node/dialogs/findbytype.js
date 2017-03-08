@@ -7,18 +7,18 @@ module.exports = [
         //Only ask again if it's been more than 5 mins
         if (!session.userData.lastAskedForLocation 
            || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
-        location.beginDialog(session);
+            location.beginDialog(session);
         } else {
             next();
         }
     },
-    function (session){
+    function (session) {
         if (session.userData && (session.userData.lat & session.userData.long)) {
             // prompt for search option
             builder.Prompts.choice(
                 session,
                 'So, what kind of place are you looking for? Just write me your preference, or choose from one of these popular ones:',
-                ['Diner', 'Pub', 'Hotel Bar', 'Breakfast', 'Café', 'Brunch', 'Italian', 'Chinese', 'Japanese'],
+                ['Diner', 'Pub', 'Hotel Bar', 'Breakfast', 'Café', 'Italian', 'Chinese', 'Japanese'],
                 {
                     maxRetries: 0
                 });

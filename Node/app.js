@@ -21,15 +21,15 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot((connector));
 
 bot.dialog('/', require('./dialogs/root'));
-bot.dialog('bestrated', require('./dialogs/bestrated'));
+bot.dialog('bestnearby', require('./dialogs/bestnearby'));
 bot.dialog('findbytype', require('./dialogs/findbytype'));
-bot.dialog('findrestaurant', require('./dialogs/findrestaurant'));
+bot.dialog('findbyname', require('./dialogs/findbyname'));
 location.create(bot);
 bot.dialog('reset', require('./dialogs/reset'))
     .triggerAction({ 
         matches: [/reset/i, /cancel/i, /return/i, /start again/i, /nevermind/i]
     });
-
+bot.use(builder.Middleware.sendTyping());
 // log any bot errors into the console
 bot.on('error', function (e) {
     console.error('An error ocurred', e);

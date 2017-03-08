@@ -1,9 +1,9 @@
 var builder = require('botbuilder');
 
 var DialogLabels = {
-    BestRated: 'Best Nearby',
+    BestNearby: 'Best Nearby',
     FindByType: 'Nearby by Type',
-    FindRestaurant: 'Find a Restaurant by Name'
+    FindByName: 'Find by Name'
 };
 
 module.exports = [
@@ -17,8 +17,8 @@ module.exports = [
         // prompt for search option
         builder.Prompts.choice(
             session,
-            welcomeMessage + ' How do you want to do it? Click a button or just chat with me:',
-            [DialogLabels.BestRated, DialogLabels.FindByType, DialogLabels.FindRestaurant],
+            welcomeMessage + ' Here\s how I can help:',
+            [DialogLabels.BestNearby, DialogLabels.FindByType, DialogLabels.FindByName],
             {
                 maxRetries: 3,
                 retryPrompt: 'Not a valid option'
@@ -40,12 +40,12 @@ module.exports = [
         // continue on proper dialog
         var selection = result.response.entity;
         switch (selection) {
-            case DialogLabels.BestRated:
-                return session.beginDialog('bestrated');
+            case DialogLabels.BestNearby:
+                return session.beginDialog('bestnearby');
             case DialogLabels.FindByType:
                 return session.beginDialog('findbytype');
-            case DialogLabels.FindRestaurant:
-                return session.beginDialog('findrestaurant');
+            case DialogLabels.FindByName:
+                return session.beginDialog('findbyname');
         }
     }
 ]
