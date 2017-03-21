@@ -52,14 +52,9 @@ module.exports = {
     ShouldAskForLocation: function(lastAskedForLocation)
     {
         if (!lastAskedForLocation){
-            console.log("lastAskedForLocation is null")
             return true;
         } 
         else { 
-            console.log("lastAskedForLocation is not null");
-            console.log(lastAskedForLocation);
-            console.log(new Date);
-            console.log(Math.abs(new Date() - new Date(lastAskedForLocation)));
             if (Math.abs(new Date() - new Date(lastAskedForLocation) > 300000)) {
                 return true;
             } else {
