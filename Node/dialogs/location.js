@@ -21,7 +21,7 @@ exports.create = function (bot) {
             } else {
                 //Simulate a location for emulator and other channels for now. 
                 //TODO: Investigate contributing to 'botbuilder-location' npm package for easy sharing of current location
-                session.send('Simulating your location!');
+                session.send('You\'re using the emulator I guess, simulating your location to be in Redmond!');
                 session.userData.lat = 47.6393261;
                 session.userData.long = -122.130572;
                 session.endDialog();

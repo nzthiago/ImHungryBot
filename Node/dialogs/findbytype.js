@@ -5,8 +5,7 @@ var location = require('./location');
 module.exports = [
     function (session, args, next) {
         //Only ask again if it's been more than 5 mins
-        if (!session.userData.lastAskedForLocation 
-           || ((new Date) - session.userData.lastAskedForLocation) > 300000) {
+        if (yelputil.ShouldAskForLocation(session.userData.lastAskedForLocation)) {
             location.beginDialog(session);
         } else {
             next();

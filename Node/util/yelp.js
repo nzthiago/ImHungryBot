@@ -48,5 +48,18 @@ module.exports = {
             )
         });
         return cards;
+    },
+    ShouldAskForLocation: function(lastAskedForLocation)
+    {
+        if (!lastAskedForLocation){
+            return true;
+        } 
+        else { 
+            if (((new Date) - lastAskedForLocation) > 300000) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
