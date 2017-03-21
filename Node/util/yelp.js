@@ -59,8 +59,8 @@ module.exports = {
             console.log("lastAskedForLocation is not null");
             console.log(lastAskedForLocation);
             console.log(new Date);
-            console.log(Math.abs(new Date() - lastAskedForLocation));
-            if (Math.abs(new Date() - lastAskedForLocation) > 300000) {
+            console.log(Math.abs(new Date() - new Date(lastAskedForLocation)));
+            if (Math.abs(new Date() - new Date(lastAskedForLocation) > 300000)) {
                 return true;
             } else {
                 return false;
