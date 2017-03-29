@@ -12,7 +12,7 @@ module.exports = [
         // has the user been welcomed to the conversation?
         if (!session.privateConversationData[global.UserWelcomedKey]) {
             session.privateConversationData[global.UserWelcomedKey] = true;
-            var welcomeMessage = "Hi, I\'m Hungry! Hope you are too. I can help you find some open places nearby.";
+            var welcomeMessage = "Hi, I\'m Hungry! Hope you are too. I can help you find some open places nearby. Click [here](https://github.com/nzthiago/ImHungryBot) to find out more about me and my policies.";
         }
         // prompt for search option
         builder.Prompts.choice(
