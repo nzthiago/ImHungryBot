@@ -36,8 +36,7 @@ module.exports = {
             cards.push(
                 new builder.HeroCard(session)
                 .title(place.name)
-                .subtitle(display_address)
-                .text('<br/><b>Rating</b>: ' + place.rating + '<br/><b>Reviews</b>: ' + place.review_count + '<br/><b>Price</b>: ' + place.price + '<img src="http://aka.ms/Fo983c">')
+                .subtitle('Distance: ' + getDistance(place.distance) + '. Rating: ' + place.rating + '. Reviews: ' + place.review_count + '. Price: ' + place.price)
                 .images([
                     builder.CardImage.create(session, place.image_url)
                 ])
@@ -61,5 +60,15 @@ module.exports = {
                 return false;
             }
         }
+    }
+}
+
+function getDistance(distanceInMeters)
+{
+    var distanceInMiles = (distanceInMeters * 0.000621371192);
+    if (distanceInMiles == 1){
+        return '1 mile';
+    } else {
+        return distanceInMiles.toFixed(2) + ' miles';
     }
 }
