@@ -37,7 +37,7 @@ module.exports = {
                 new builder.HeroCard(session)
                 .title(place.name)
                 .subtitle(display_address)
-                .text('Rating: ' + place.rating + '. Reviews: ' + place.review_count + '. Price: ' + place.price)
+                .text('**Rating**: ' + place.rating + '. Reviews: ![duck](http://aka.ms/Fo983c)' + place.review_count + '. <b>Price</b>: ' + place.price)
                 .images([
                     builder.CardImage.create(session, place.image_url)
                 ])
