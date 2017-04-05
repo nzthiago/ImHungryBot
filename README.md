@@ -1,7 +1,7 @@
 # I'm Hungry Bot
 Sample Bot based on the [Microsoft Bot Framework](http://www.botframework.com) to help users find open food places nearby.
 
-It uses the Yelp fusion API to find open food places nearby. 
+It uses the [Yelp fusion API](https://nz.yelp.com/developers/documentation/v3) to find open food places nearby. 
 
 ## Contributing / Issues
 
