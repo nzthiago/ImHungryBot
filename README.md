@@ -4,6 +4,7 @@ Sample Bot based on the [Microsoft Bot Framework](http://www.botframework.com) t
 It uses the [Yelp fusion API](https://nz.yelp.com/developers/documentation/v3) to find open food places nearby. 
 
 You can connect with it on Facebook here!
+
 <a href="https://www.messenger.com/t/1286363334773217" target="_blank"><img src="https://facebook.botframework.com/Content/MessageUs.png"></a>
 
 ## Contributing / Issues
