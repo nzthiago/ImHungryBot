@@ -3,6 +3,9 @@ Sample Bot based on the [Microsoft Bot Framework](http://www.botframework.com) t
 
 It uses the [Yelp fusion API](https://nz.yelp.com/developers/documentation/v3) to find open food places nearby. 
 
+You can connect with it on Facebook here!
+<a href="https://www.messenger.com/t/1286363334773217" target="_blank"><img src="https://facebook.botframework.com/Content/MessageUs.png"></a>
+
 ## Contributing / Issues
 
 If you are interested in contributing to this project feel free to submit a pull request. If you find issues with or desire improvements for the existing functionality, please [file an issue](https://github.com/nzthiago/ImHungryBot/issues) here in GitHub. Note that the I'm Hungry Bot is a sample and not actively supported.   
